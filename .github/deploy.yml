@@ -2,3 +2,14 @@ name: CI/CD Pipeline
 
 on:
   workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      MODULE_NAME: application
+    steps:
+      - name: Parse combined secrets
+        id: parse_secrets
+        run: |
+          echo "Extracting secrets..."
