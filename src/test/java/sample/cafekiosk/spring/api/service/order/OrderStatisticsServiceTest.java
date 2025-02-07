@@ -4,10 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import sample.cafekiosk.spring.IntegrationTestSupport;
-import sample.cafekiosk.spring.client.mail.MailSendClient;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistory;
 import sample.cafekiosk.spring.domain.history.mail.MailSendHistoryRepository;
 import sample.cafekiosk.spring.domain.order.Order;
@@ -65,10 +62,10 @@ class OrderStatisticsServiceTest extends IntegrationTestSupport {
         List<Product> products = List.of(product1, product2, product3);
 
         productRepository.saveAll(List.of(product1, product2, product3));
-        Order order1 = createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 4, 23, 59));
-        Order order2 = createPaymentCompletedOrder(products, now);
-        Order order3 = createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 5, 23, 59));
-        Order order4 = createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 6, 0, 0));
+        createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 4, 23, 59));
+        createPaymentCompletedOrder(products, now);
+        createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 5, 23, 59));
+        createPaymentCompletedOrder(products, LocalDateTime.of(2025, 2, 6, 0, 0));
 
         // stubbing
         when(mailSendClient.sendMail(any(String.class), any(String.class), any(String.class), any(String.class)))
