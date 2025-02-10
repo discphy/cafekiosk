@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class ProductControllerDocsTest extends RestDocsSupport {
+class ProductControllerDocsTest extends RestDocsSupport {
 
     private final ProductService productService = mock(ProductService.class);
 
@@ -67,7 +67,7 @@ public class ProductControllerDocsTest extends RestDocsSupport {
                 preprocessResponse(prettyPrint()),
                 requestFields(
                     fieldWithPath("type").type(JsonFieldType.STRING).description("상품 타입"),
-                    fieldWithPath("sellingStatus").type(JsonFieldType.STRING).description("상품 판매상태"),
+                    fieldWithPath("sellingStatus").type(JsonFieldType.STRING).description("상품 판매상태").optional(),
                     fieldWithPath("name").type(JsonFieldType.STRING).description("상품 이름"),
                     fieldWithPath("price").type(JsonFieldType.NUMBER).description("상품 가격")
                 ),
